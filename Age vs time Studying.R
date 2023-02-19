@@ -13,7 +13,7 @@ graph <- ggplot(age_study_df, aes(x = Age, y = Self_Study_Time)) +
   geom_point()
 
 plot(graph +
-  scale_x_continuous(breaks = seq(7, 59, by = 1)) +
+  scale_x_continuous(breaks = seq(6, 60, by = 2)) +
   scale_y_continuous(breaks = seq(0, 18, by = 2)) +
   labs(
     x = "Age",
