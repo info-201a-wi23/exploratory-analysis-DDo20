@@ -16,7 +16,7 @@ plot(graph +
   scale_x_continuous(breaks = seq(6, 60, by = 2)) +
   scale_y_continuous(breaks = seq(0, 18, by = 2)) +
   labs(
-    x = "Age",
+    x = "Age (Years)",
     y = "Time spent on Studying (Hours)",
     title = "Relationship between Age and how much time is spent studying",
   )
