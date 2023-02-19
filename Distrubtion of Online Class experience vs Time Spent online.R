@@ -3,7 +3,6 @@ project_data <- read.csv("https://raw.githubusercontent.com/info-201a-wi23/explo
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
-library(tidyr)
 
 data_filtered <- project_data %>%
   filter(complete.cases(Rating.of.Online.Class.experience)) %>%
