@@ -21,5 +21,3 @@ ggplot(data_filtered, aes(x = Time.spent.on.Online.Class, y = Rating.of.Online.C
   scale_fill_manual(values = c("red", "orange", "yellow" , "blue", "green")) +
   scale_y_discrete(limits = c("Very Poor", "Poor", "Average", "Good", "Excellent"), expand = c(0.1, 0)) +
   coord_cartesian(ylim = c(1,5))
-
-summary(project_data$Time.spent.on.Online.Class[project_data$Rating.of.Online.Class.experience == "Good"])
