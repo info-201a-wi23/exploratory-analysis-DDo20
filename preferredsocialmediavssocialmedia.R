@@ -15,4 +15,5 @@ ggplot(data = graph_data) +
   ) +
   theme(legend.position="none") +
   scale_fill_manual(values = c("#bc66fa", "#1f5aa3", "#fc30a7", "#096be3", "#000000", "#fc8a17", "#a60c0c", "#fa4402", "#ffdd03", "#945adb", "#52d9f7", "#52bbf7", "#04b804", "#fa0202"))
-
+# Color of the logo of the app.
+# Used a bar chart because comparing a specific continuous value for different categories in one group.
