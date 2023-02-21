@@ -3,82 +3,208 @@ title: "Exploratory Analysis"
 output: html_document
 ---
 
-## Project title
-
-Give your project a concise, interesting title that summarizes the entirety of your project
+## Learning Through The Pandemic
 
 ### Authors
 
-Names of your team members
+Danna Lozada (Dlozada@uw.edu), Danny Do (dannydo2023@gmail.com), Son Dang (sdang2@uw.edu), Abby Mapili (Amapil@uw.edu)
 
 ### Date
 
-Winter 2022
+Winter 2023
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+
+project_data <- read.csv("https://raw.githubusercontent.com/info-201a-wi23/exploratory-analysis-DDo20/main/COVID-19%20Survey%20Student%20Responses.csv")
+
+data <- read.csv("https://raw.githubusercontent.com/info-201a-wi23/exploratory-analysis-DDo20/main/COVID-19%20Survey%20Student%20Responses.csv")
+
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(stringr)
+```
 
 ### Abstract
 
-No more than three sentences that summarize your project. Focus on the very most important aspects. For example: (1) "Our main question is .... This question is important because .... To address the question, we will ...." (2) "We are concerned with ..., because .... To address this concern, we plan to ...." (3) "Consider that .... This is important because .... Accordingly, we plan to ...."
+Our driving question is, “how did COVID-19 impact students and their education?”, this question is important because we have to understand that the pandemic had dramatically changed the way we all lived on a daily basis. School can be an important part of our lives as it's a place for us to educate ourselves, learn to socialize and make friends, and be a part of a community that welcomes us. To address this concern, we plan to dive into research about how COVID-19 played a role in student performance, mental health, social health, and daily life.
 
 ### Keywords
 
-3-5 keywords that summarize your project.
-(e.g., "Keywords: human physiology; bicycle exercise; Gen Z; times-series data")
+Mental Health, COVID-19, Social Interaction, Education, Students
 
 ### Introduction  
 
-Briefly introduce your project.  Include 3-5 research questions. What motivates the questions? Why are they important? (at least 200 words)
+The COVID-19 pandemic has presented numerous changes in the daily lives of everyone around the world. One significant impact is the transformation of in-person to online and hybrid instruction among students. Due to social distance policies and lockdowns, many educational institutions adapted to new curriculums utilizing online digital formats and smaller class sizes. In addition, many public schools face barriers in using technology to provide quality instruction, promote engagement, and access to the mental health services students need. With a new turn towards digital learning, is important to identify in which ways are students impacted.
+
+The goal of our project is to analyze the effects of the COVID-19 pandemic on student life. Our primary research question is “how did COVID-19 impact students and their education?”. It is significant to address the negative and positive impacts of learning through the pandemic so we can improve the well-being and performance of students. To do this, we will analyze four main questions using data:
+
+1. How did the pandemic affect students’ time management and ability to focus on education?
+
+2. How did the pandemic influence academic performance among students?
+
+3. What was the impact of COVID-19 and the ability for social interaction?
+
+4. What was the effect on the mental health of those after the pandemic? What were the main reasons?
+
+These questions will help us understand the psychological and academic factors that have shifted due to the adaptation of new learning experiences. Institutions should be aware of how students have changed in response to the COVID-19 crisis. This can help provide support to address concerns about the development of student’s cognitive abilities, emotional well-being, social lifestyle, and health outcomes.
 
 ### Related Work  
 
-Describe your topic and related work in this space. You must include 3 citations to related work (URLs to similar work, high quality articles from the popular press, research papers, etc. ) Please use a standard citation style of your choice. (at least 200 words)
+Our topic introduces the concern of how the global pandemic – COVID-19 has affected the lives of students in education. We are here to dive deeper into the question of how the pandemic impacted the experience of these students not only in the form of education but also in their own personal life. All through these hard times, we understand that the physical, mental, and social health of the youth at this important part of their life has been altered dramatically (Jad A, et al, 2022).
+
+Through understanding the youth in education, we also want to branch out into the ideas of understanding the story of the physical and mental health of those who just weren’t in school, but all of us who have been impacted by the pandemic (Panchal and Kamal, 2021). The global pandemic had shunned most of us away from interactions with anyone: from family, to friends, to meeting new people. We had taken a pause on most of the activities we would see as normal, and that had left us in a place of not understanding how to socially interact with one another. The caution and uneasiness of the viral disease had left all of us in a place of limitation and fearfulness of even having the thought of one day being able to interact normally with our loved ones again. (Mental Health America, 2022)
+
+#### Bibliography
+
+* Elharake, Jad A, et al. “Mental Health Impact of Covid-19 among Children and College Students: A Systematic Review.” Child Psychiatry and Human Development, U.S. National Library of Medicine, 11 Jan. 2022, https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8747859/.
+
+* Huff, Charlotte. “Employers Are Increasing Support for Mental Health.” Monitor on . Psychology, American Psychological Association, 1 Jan. 2021, https://www.apa.org/monitor/2021/01/trends-employers-support.
+
+* Mental Health America. “Mental Health and Covid-19: Two Years after the Pandemic, Mental Health Concerns Continue to Increase.” Mental Health America, https://mhanational.org/mental-health-and-covid-19-two-years-after-pandemic.
+
+* Nirmita Panchal, Rabah Kamal, and Feb 2021. “The Implications of COVID-19 for Mental Health and Substance Use.” KFF, 28 Apr. 2022, https://www.kff.org/coronavirus-covid-19/issue-brief/the-implications-of-covid-19-for-mental-health-and-substance-use/#:~:text=A%20KFF%20Health%20Tracking%20Poll,due%20to%20worry%20and%20stress.
 
 ### The Dataset
 
-Where did you find the data? Please include a link to the data source  
-Who collected the data?  
-How was the data collected or generated?  
-Why was the data collected?  
-How many observations (rows) are in your data?  
-How many features (columns) are in the data?  
-What, if any, ethical questions or questions of power do you need to consider when working with this data?  
-What are possible limitations or problems with this data?   (at least 200 words)
+  The data set we are analyzing came from [kaggle](https://www.kaggle.com/datasets/kunal28chaturvedi/covid19-and-its-impact-on-students), a public domain where users can share and find data. It is based on a study called ["COVID-19 and its impact on education, social life and mental health of students"](https://www.researchgate.net/publication/347935769_COVID-19_and_its_impact_on_education_social_life_and_mental_health_of_students_A_Survey), conducted by Kunal Chaturvedi, Dinesh Kumar Vishwakarma, and Nidhi Singh from Delhi Technological University, India. The purpose of this study was to understand how the pandemic impacted the lifestyle of students mentally and academically. The survey collected demographics of different age groups and information about students' time spent on online classes and self-study, devices used to learn, sleeping habits, fitness routine, as well as changes to their weight, social life, and mental health. The study had a sample size of 1182 students across different educational institutions in Delhi National Capital Region, India. Based on the survey responses, the data set contains 1182 observations (rows), and 19 features (columns).
+  
+  An important note to consider while working with this data set is that it is based on students who reside in India. Although the data includes our population of interest (students learning through the pandemic), it is not representative of the entire world, as the data does not include a broader range of locations. Thus we cannot make generalizations about other regions of the world, as they differ in resources, access to technology, and how they run educational institutions. However, the survey answers were not limited to one educational institution to eliminate biased responses. Another possible problem could be the legitimacy of each survey response, there is a possibility that responses are answered untruthfully and inaccurately due to question comprehension and understanding. The time span of this data also presents a problem since we don't have any references to what these datasets would look like outside the pandemic.
 
 ### Implications
 
-Assuming you answer your research questions, briefly describe the expected or possible implications for technologists, designers, and policymakers. (at least 150 words)
+It seems that a lot of people reported mental health issues during the COVID-19 pandemic. There were many different factors that could have affected people during a lock-down including a decrease in household income, a decrease in academic performance, solitude, and the current events of the era (which were very charged, politicized, and somewhat bleak). According to the MHA, the main concerns of people aged 11-17 were the coronavirus for 14-19% of youths across all race brackets. Current events were 11-17% across all brackets. Grief/loss being a main concern was affecting 18-29% across all brackets (with the median being 21%). Racism affected groups with a range of 1-11% (although most groups except for 2 put around 4-5%). Past relationships affected a significant portion of the population affecting a range of 32-36%. Loneliness/ isolation was by far the greatest concern with having a 59-69% concern across all brackets (although only one bracket was below 62%). Past trauma was the second largest group with a range of 39-56%.
+
+Looking at a dataset from 2018-2022 (CDC, Data and Statistics on Children’s Mental Health), it seems like the percentages of mental disorders among youths stayed pretty consistent and fluctuates up and down with no discernible patterns over the years. The only implication is that people stay pretty much the same even during lock down.
 
 ### Limitations & Challenges
-What challenges or limitations might you need to address with your project idea more broadly? Briefly discuss. (at least 150 words)
+
+Most mental health data we were able to find were taken around 2020. There was a 500% increase in mental health screenings from 2019 to 2021, and a further 103% increase in 2022 (Mental Health America). This means that the data might be skewed towards having higher percentages of mental health problems in more recent years. This is a problem because it means that numbers could be under-reported before 2019 (This is also probably why it was hard to find data before the pandemic on mental health). The people screened before 2019 might have only been people with severe issues that are very apparent. Also, there might have been some mental health stigma in earlier years. Mental health awareness after all is a very recent thing. Campaigns for it have only been in the media and in the scope of large companies for the last few years. According to the American Psychological association “Nearly half of large employers train their managers to recognize such issues, and an additional 18% plan to begin to do so in 2021, a 2020 Business Group on Health survey found. Plus, 54% of employers will offer free or low-cost virtual mental health visits in 2021”.
 
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
+```{r, include = FALSE}
+# 1. Minimum student age
+Max_age <- project_data %>% 
+  filter(Age.of.Subject == max(Age.of.Subject, na.rm = TRUE)) %>% 
+  pull(Age.of.Subject)
+
+# 2. Maximum student age
+Min_age <- project_data %>% 
+  filter(Age.of.Subject == min(Age.of.Subject, na.rm = TRUE)) %>% 
+  pull(Age.of.Subject)
+
+# 3 & 4 Percentage of Responses that had or did not have a health issue during the lock down.
+Healthy <- project_data %>% 
+  filter(Health.issue.during.lockdown == "NO") %>%
+  group_by(Health.issue.during.lockdown) %>% 
+  summarize(healthy = sum(Health.issue.during.lockdown == "NO"), na.rm = T) %>% 
+  pull(healthy)
+
+Not_healthy <- project_data %>% 
+  filter(Health.issue.during.lockdown == "YES") %>% 
+  group_by(Health.issue.during.lockdown) %>% 
+  summarize(nothealthy = sum(Health.issue.during.lockdown == "YES"), na.rm = T) %>% 
+  pull(nothealthy)
+
+# 5. Number of students that felt like they had poor/very poor class experience.
+Poor_class_experience <- project_data %>%
+  filter(Rating.of.Online.Class.experience %in% c("Poor", "Very poor"))
+
+Num_poor_class_experience <- nrow(Poor_class_experience)
+  
+# Summary info combined
+sum_info <- list()
+sum_info$Max_age <- Max_age
+sum_info$Min_age <- Min_age
+sum_info$Not_healthy <- Not_healthy
+sum_info$Healthy <- Healthy
+sum_info$Poor_class_experience <- Poor_class_experience
+sum_info$Num_poor_class_experience <-Num_poor_class_experience
+```
+The youngest age recorded in the study is **`r sum_info$Min_age`** years old, and the oldest age is **`r sum_info$Max_age`** years old. About **`r sum_info$Not_healthy`** students had health issues during the survey collection, while **`r sum_info$Healthy`** students were healthy. Overall **`r sum_info$Num_poor_class_experience`** students responded that they had a poor learning experience during the pandemic.
 
 ### Table
+```{r, echo = FALSE}
+agg_table <- project_data %>% 
+  group_by(Age.of.Subject) %>% 
+  summarize(Ave_time_on_class = mean(Time.spent.on.Online.Class), Ave_study_time = 
+              mean(Time.spent.on.self.study), Ave_sleep_time = mean(Time.spent.on.sleep), Ave_Physical_Activity = 
+              mean(Time.spent.on.fitness)) %>% filter(Age.of.Subject <= 25) %>% 
+  filter(Age.of.Subject >= 15)
 
-Include a table of aggregate information
+table_caption <- paste("The Average Time Spent on Class, Self-Studying, Amount of Sleep, and Physical Activity for Ages 15-25")
 
-Describe why you included the table and what information it reveals
-
-### Chart 1
-
-Include a chart
-
-Describe why you chose this chart and what information it reveals
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart1_example.R")}
+library(knitr)
+knitr::kable(agg_table, caption = table_caption)
 ```
 
-### Chart 2
+This table shows the average amount of hours spent on common lifestyle factors according to ages 15-25. Ages 15-20 spend more time on class time and physical activity than other ages. High school students (ages 15-17), also spend the most time self-studying. There appears to be no correlation with age and the amount of sleep students get during the pandemic.
 
-Include a chart
+### Distrubtion of Online Class experience vs Time Spent online
 
-Describe why you chose this chart and what information it reveals
+```{r, echo = FALSE}
+data_filtered <- project_data %>%
+  filter(complete.cases(Rating.of.Online.Class.experience)) %>%
+  mutate(Rating.of.Online.Class.experience = factor(Rating.of.Online.Class.experience, 
+                                                    levels = c("Very Poor", "Poor", "Average", "Good", "Excellent")))
 
-### Chart 3
+data_filtered$Rating.of.Online.Class.experience[is.na(data_filtered$Rating.of.Online.Class.experience)] <- "Very Poor"
 
-Include a chart
+ggplot(data_filtered, aes(x = Time.spent.on.Online.Class, y = Rating.of.Online.Class.experience, fill = Rating.of.Online.Class.experience)) +
+  geom_boxplot() +
+  labs(title = "Distribution of Online Class Experience by Time Spent Online",
+       x = "Time Spent on Online Class",
+       y = "Rating of Online Class Experience") +
+  theme_classic() +
+  scale_fill_manual(values = c("red", "orange", "yellow" , "blue", "green")) +
+  scale_y_discrete(limits = c("Very Poor", "Poor", "Average", "Good", "Excellent"), expand = c(0.1, 0)) +
+  coord_cartesian(ylim = c(1,5))
+```
 
-Describe why you chose this chart and what information it reveals
+This data visual allows us to see the correlation between how much time students spend on online, and how it affects their online learning experience. This can help us understand whether longer or shorter class duration, online instruction, and workload is beneficial for students. The data shows that there is a correlation between longer class time and higher ratings of class experience.
+
+### Age vs time Studying
+
+```{r, echo=FALSE}
+age_study_df <- project_data %>% 
+  select(Age.of.Subject, Time.spent.on.self.study) %>%
+  rename("Age" = "Age.of.Subject") %>%
+  rename("Self_Study_Time" = "Time.spent.on.self.study")
+
+graph <- ggplot(age_study_df, aes(x = Age, y = Self_Study_Time)) +
+  geom_point()
+
+plot(graph +
+  scale_x_continuous(breaks = seq(6, 60, by = 2)) +
+  scale_y_continuous(breaks = seq(0, 18, by = 2)) +
+  labs(
+    x = "Age (Years)",
+    y = "Time spent on Studying (Hours)",
+    title = "Relationship between Age and how much time is spent studying",
+  )
+)
+```
+
+
+This graph helps us understand the relationship between age and studying. The data allows to figure out which age ranges are more susceptible to digital instruction than others.
+
+### Distrubtion of Online Class experience vs Time Spent online
+```{r, echo=FALSE}
+data$Prefered.social.media.platform <- gsub ("Whatsapp", "WhatsApp", data$Prefered.social.media.platform)
+data$Prefered.social.media.platform <- gsub ("None ", "None", data$Prefered.social.media.platform)
+graph_data <- data %>% group_by(Prefered.social.media.platform) %>%
+  summarize(avg_time_spent = mean(Time.spent.on.social.media, na.rm = TRUE))
+ggplot(data = graph_data) +
+  geom_col(mapping= aes(x= Prefered.social.media.platform, y= avg_time_spent, fill = Prefered.social.media.platform)) + 
+  labs(
+    title = "Average Amount of Time Spent on Prefered Media Platform",
+    x = "Platform",
+    y = "Average Amount of Hours Spent",
+  ) +
+  theme(legend.position="none") +
+  scale_fill_manual(values = c("#bc66fa", "#1f5aa3", "#fc30a7", "#096be3", "#000000", "#fc8a17", "#a60c0c", "#fa4402", "#ffdd03", "#945adb", "#52d9f7", "#52bbf7", "#04b804", "#fa0202"))
+```
+
+Moving towards digital learning, understanding which social media platforms students use can help us understand what platforms might contribute to higher distress in mental health. Since the study was based in india, a majority of the students used talklife.
